@@ -1,0 +1,80 @@
+{
+  "contract_name": "ConvertLib",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "name": "conversionRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "convert",
+      "outputs": [
+        {
+          "name": "convertedAmount",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    }
+  ],
+  "unlinked_binary": "0x60606040523415600b57fe5b5b60748061001a6000396000f300606060405263ffffffff60e060020a60003504166396e4ee3d81146020575bfe5b602c600435602435603e565b60408051918252519081900360200190f35b8181025b929150505600a165627a7a72305820ce3ef6bfd3e5c08df11cef3302e1875cbe5d5f049bb6bdeeac0800e1f4f066460029",
+  "networks": {
+    "1495668731314": {
+      "events": {},
+      "links": {},
+      "address": "0xf45a1783b7669722bbe5f33b59adc63ac61bc3ed",
+      "updated_at": 1495675486538
+    },
+    "1495676193628": {
+      "events": {},
+      "links": {},
+      "address": "0xd1d0e129195f114e4f2b95abfd38aec6356888cf",
+      "updated_at": 1495677058880
+    },
+    "1495760664677": {
+      "events": {},
+      "links": {},
+      "address": "0x396f7100d68c8204f7b797012cef68c72f5b6ebe",
+      "updated_at": 1495767054035
+    },
+    "1495842564953": {
+      "events": {},
+      "links": {},
+      "address": "0x8e250a37660134e58c62e7eebc3cc49fc9f42a35",
+      "updated_at": 1495858210841
+    },
+    "1495885117574": {
+      "events": {},
+      "links": {},
+      "address": "0x336d11f96a758a240b79411e088ace7803b516b1",
+      "updated_at": 1495885383093
+    },
+    "1495889275593": {
+      "events": {},
+      "links": {},
+      "address": "0xd41c98201d7963555147356dce70a4a90b4a6712",
+      "updated_at": 1495889856355
+    },
+    "1495890024021": {
+      "events": {},
+      "links": {},
+      "address": "0xa7b14f2feda42aaa4f285e517982d47e9033d38c",
+      "updated_at": 1495893924421
+    },
+    "1496718740424": {
+      "events": {},
+      "links": {},
+      "address": "0xbea4296b9652554449b8aaa5a95e78d5f5aecac7",
+      "updated_at": 1496721513954
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1496721513954
+}
