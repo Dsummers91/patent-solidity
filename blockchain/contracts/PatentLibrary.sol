@@ -12,7 +12,7 @@ contract PatentLibrary {
         _owner = tx.origin;        
     }
 
-    function createPatent(string patentNumber, string description, string patentAbstract, []string inventors, string url) {
+    function createPatent(string patentNumber, string description, string patentAbstract, string inventors, string url) {
         url = url;
         if(_contracts[ID] != address(0)) throw;
         address patent = new Patent(ID, description, patentAbstract, inventors, url);

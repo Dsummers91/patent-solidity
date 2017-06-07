@@ -1,6 +1,5 @@
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.11;
 
-import "../ethereum-api/oraclizeAPI.sol";
 import "./strings.sol";
 
 contract Patent is usingOraclize {
@@ -27,7 +26,7 @@ contract Patent is usingOraclize {
     event PatentBid(address bidder, uint amount, uint date)
     event StateChange(address bidder, uint state, uint date)
 
-    function Patent (string patentNumber, string description, string patentAbstract, []string inventors, string url) {
+    function Patent (string patentNumber, string description, string patentAbstract, string inventors, string url) {
         OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
         _patentNumber = patentNumber;
         _patentDescription = description;
