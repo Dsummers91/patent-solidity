@@ -8,5 +8,5 @@ module.exports = function(deployer) {
   deployer.link(ConvertLib, MetaCoin);
   deployer.deploy(MetaCoin);
   deployer.deploy(PatentLibrary);
-  deployer.deploy(Patent, "23", "description", "test" ,["test"], "test");
+  deployer.deploy(Patent, "23", "description", "test" ,"test", "test");
 };

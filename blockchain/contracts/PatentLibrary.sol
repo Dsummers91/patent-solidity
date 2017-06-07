@@ -13,11 +13,10 @@ contract PatentLibrary {
     }
 
     function createPatent(string patentNumber, string description, string patentAbstract, string inventors, string url) {
-        url = url;
-        if(_contracts[ID] != address(0)) throw;
-        address patent = new Patent(ID, description, patentAbstract, inventors, url);
-        patentCreated(tx.origin, now, ID);
-        _contracts[ID] = patent;
+        if(_contracts[patentNumber] != address(0)) throw;
+        address patent = new Patent(patentNumber, description, patentAbstract, inventors, url);
+        patentCreated(tx.origin, now, patentNumber);
+        _contracts[patentNumber] = patent;
     }
 
     function getPatentById(string ID) returns(address patentAddress) {
