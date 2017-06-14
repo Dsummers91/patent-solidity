@@ -1,3 +1,16 @@
-<p>
-  patent-list works!
-</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Patents ID</th>
+      <th>Date Created</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="patents">
+    <tr *ngFor="let patent of patents">
+      <td>{{patent.args.patentID}}</td>
+      <td>{{patent.args.date}}</td>
+      <td>{{patent | json}}</td>
+    </tr>
+  </tbody>
+</table>
