@@ -1,7 +1,31 @@
 pragma solidity ^0.4.11;
 
-import "./strings.sol";
-import "../ethereum-api/oraclizeAPI.sol";
+import "github.com/Arachnid/solidity-stringutils/strings.sol";
+import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
+
+contract PatentLibrary {
+    mapping (string => address) _contracts;
+    address public _owner;
+
+    string public test = "dfdffdssd";
+
+    event patentCreated(address indexed creator, uint date, string patentID);
+
+    function PatentLibrary() {
+        _owner = tx.origin;        
+    }
+
+    function createPatent(string patentNumber, string description, string patentAbstract, string inventors, string url) {
+        if(_contracts[patentNumber] != address(0)) throw;
+        address patent = new Patent(patentNumber, description, patentAbstract, inventors, url);
+        patentCreated(tx.origin, now, patentNumber);
+        _contracts[patentNumber] = patent;
+    }
+
+    function getPatentById(string ID) returns(address patentAddress) {
+        return Patent(_contracts[ID]);
+    }
+}
 
 contract Patent is usingOraclize {
     using strings for *;
@@ -34,8 +58,6 @@ contract Patent is usingOraclize {
 
     function Patent(string patentNumber, string description, string patentAbstract, string inventors, string url) {
         _state = _defaultstate;
-
-        OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
         _patentNumber = patentNumber;
         _patentDescription = description;
         _patentAbstract = patentAbstract;

@@ -6,6 +6,8 @@ contract PatentLibrary {
     mapping (string => address) _contracts;
     address public _owner;
 
+    string public test = "dfdffdssd";
+
     event patentCreated(address indexed creator, uint date, string patentID);
 
     function PatentLibrary() {

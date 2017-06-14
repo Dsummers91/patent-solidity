@@ -8,7 +8,7 @@ const PatentLibraryContractABI = [{ "constant": false, "inputs": [{ "name": "ID"
 
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
-let pl = web3.eth.contract(PatentLibraryContractABI).at("0x9e9faff9c48992fb52e2261afcf179faa16eebc8")
+let pl = web3.eth.contract(PatentLibraryContractABI).at("0x4ac1fc7bf50a7e7437b1eb1f0dc979efe4784a84")
 var lastBlock;
 let patents = [];
 setInterval((() => {
@@ -22,8 +22,8 @@ setInterval((() => {
   lastBlock = web3.eth.blockNumber;
 }).bind(this), 5000);
 
-
 app.use(cors())
+
 
 app.get("/patent", (req,res) => {
   patent = require('../blockchain/build/contracts/Patent.json')
