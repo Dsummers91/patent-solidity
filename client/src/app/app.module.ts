@@ -9,11 +9,13 @@ import { PatentListComponent } from './patent-list/patent-list.component';
 import { PatentService } from 'app/shared/service/patent.service';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routing';
+import { PatentComponent } from './patent/patent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PatentListComponent
+    PatentListComponent,
+    PatentComponent
   ],
   imports: [
     BrowserModule,

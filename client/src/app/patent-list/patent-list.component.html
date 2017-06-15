@@ -1,16 +1,54 @@
-<table class="table table-bordered">
+<h1 class="text-center">Blockchain Patent</h1>
+
+<table class="table table-bordered text-center table-striped">
   <thead>
     <tr>
-      <th>Patents ID</th>
-      <th>Date Created</th>
-      <th>Status</th>
+      <th class="text-center">Patents ID</th>
+      <th class="text-center">Abstract</th>
+      <th class="text-center">Date Created</th>
+      <th class="text-center">Status</th>
+      <th></th>
     </tr>
   </thead>
   <tbody *ngIf="patents">
-    <tr *ngFor="let patent of patents">
+    <tr *ngFor="let patent of patents" (click)="goToPatent(patent.args.patentAddress)">
       <td>{{patent.args.patentID}}</td>
-      <td>{{patent.args.date}}</td>
-      <td>{{patent | json}}</td>
+      <td>{{patent.args.patentAbstract}}</td>
+      <td>{{patent.date}}</td>
+      <td>{{state[patent.state]}}</td>
+      <td><button class="btn btn-info btn-sm btn-small">GO</button></td>
     </tr>
   </tbody>
 </table>
+<br>
+
+<h2 class="text-center">Create Patent Contract</h2>
+<div class="col-xs-6 col-xs-offset-3">
+  <div class="form-group row">
+  <label  class="col-2 col-form-label">ID</label>
+  <div class="col-10">
+    <input [(ngModel)]="create.name" class="form-control" type="text" value="" id="example-text-input">
+  </div>
+  <label  class="col-2 col-form-label">Inventors</label>
+  <div class="col-10">
+    <input [(ngModel)]="create.inventors" class="form-control" type="text" value="" id="example-text-input">
+  </div>
+  <label  class="col-2 col-form-label">Abstract</label>
+  <div class="col-10">
+    <input [(ngModel)]="create.abstract" class="form-control" type="text" value="" id="example-text-input">
+  </div>
+  <label  class="col-2 col-form-label">Description</label>
+  <div class="col-10">
+    <input [(ngModel)]="create.description" class="form-control" type="text" value="" id="example-text-input">
+  </div>
+  <label  class="col-2 col-form-label">Url</label>
+  <div class="col-10">
+    <input [(ngModel)]="create.url" class="form-control" type="text" value="" id="example-text-input">
+  </div>
+</div>
+</div>
+<br>
+<div class="clearfix"></div>
+<div class="text-center">
+  <button (click)="createPatent('2')" class="btn btn-primary" type="submit">Create</button>
+</div>

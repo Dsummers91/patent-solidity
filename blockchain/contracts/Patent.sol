@@ -1,7 +1,7 @@
 pragma solidity ^0.4.11;
 
-import "./strings.sol";
-import "../ethereum-api/oraclizeAPI.sol";
+import "github.com/Arachnid/solidity-stringutils/strings.sol";
+import "github.com/oraclize/ethereum-api/oraclizeAPI.sol"
 
 contract Patent is usingOraclize {
     using strings for *;
@@ -21,6 +21,9 @@ contract Patent is usingOraclize {
     uint  public _amountToPurchase;
     string public _oracleQuery;
     string private _xpath;
+    uint public _highestBid;
+    uint public _minimumBid;
+    string public _patentUrl;
     Bidder public _winningBidder;
 
     struct Bidder {
@@ -34,13 +37,11 @@ contract Patent is usingOraclize {
 
     function Patent(string patentNumber, string description, string patentAbstract, string inventors, string url) {
         _state = _defaultstate;
-
-        OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
         _patentNumber = patentNumber;
         _patentDescription = description;
         _patentAbstract = patentAbstract;
         _inventors = inventors;
-        _patentOwner = "jagfdgh";
+        _patentUrl = url;
         _owner = tx.origin;
         var xpath = "/html/body/table[3]/tr[2]/td/table/tr[2]/td[1]/b/text())";
         strings.slice memory oracleQuery = "html(".toSlice();
@@ -50,9 +51,11 @@ contract Patent is usingOraclize {
         _oracleQuery = oracleQuery.toString();
         }
 
-    function openBidding(uint duration) isOwner in_state(PatentStates.Closed) {
+    function openBidding(uint duration, uint minimumBid) isOwner in_state(PatentStates.Closed) {
         _auctionEndTime = now + (duration * 1 days);
         _state = PatentStates.OpenForBidding;
+        _minimumBid = minimumBid;
+
     }
 
     function registerForBidding(string name) in_state(PatentStates.OpenForBidding) {
@@ -63,7 +66,11 @@ contract Patent is usingOraclize {
     function closeBidding() isOwner in_state(PatentStates.OpenForBidding) {
         _state = PatentStates.Escrow;
     }
-
+    
+    // function getBalance() returns uint {
+    //     return _bidders[msg.sender].amountContributed;
+    // }
+    
     function refundBid() {
         if(msg.sender == _winningBidder.bidderAddress) throw;
         if(_bidders[msg.sender].amountContributed == 0) throw;
@@ -71,6 +78,14 @@ contract Patent is usingOraclize {
         _bidders[msg.sender].amountContributed = 0;
     }
 
+    function dispute() {
+        _state = PatentStates.Dispute;
+    }
+
+    function confirmPatent() payable {
+        oraclize_query('URL', _oracleQuery);
+    }
+    
     function __callback(bytes32 myid, string result) in_state(PatentStates.Escrow) {
         if (msg.sender != oraclize_cbAddress()) throw;
         _patentOwner = result;
@@ -97,9 +112,6 @@ contract Patent is usingOraclize {
         if(_bidders[msg.sender].amountContributed > _winningBidder.amountContributed) {
             _winningBidder = _bidders[msg.sender];
         }
-    }
-
-    function confirmPatent() payable {
-        oraclize_query('URL', _oracleQuery);
+        _highestBid = _winningBidder.amountContributed;
     }
 }

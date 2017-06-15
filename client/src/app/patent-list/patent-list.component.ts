@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router'
 import { PatentService } from "app/shared/service/patent.service";
 import * as Web3 from "web3";
 
@@ -8,14 +9,18 @@ declare var window: any;
   templateUrl: './patent-list.component.html',
   styleUrls: ['./patent-list.component.css']
 })
-export class PatentListComponent implements OnInit {
+export class PatentListComponent implements OnInit, OnDestroy {
   library: any;
   patent: any;
   web3: any;
   patents: any = [];
+  state = ['Closed', 'OpenForBidding', 'Escrow', 'Dispute'];
+  interval :any;
+  create: any = {url: 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-bool.html&r=1&f=G&l=50&co1=AND&d=PTXT&s1=blockchain&OS=blockchain&RS=blockchain'};
 
   constructor(
-    protected patentService: PatentService
+    protected patentService: PatentService,
+    protected router: Router
   ) { }
   ngOnInit() {
     let self = this;
@@ -26,13 +31,12 @@ export class PatentListComponent implements OnInit {
     }
     this.patentService.getPatentContract(this.web3)
       .subscribe((lib) => {
-        this.library = this.web3.eth.contract(lib.abi).at('0x65625EDaaE34825BA76606F80EE0559Acc0E8ff2');
+        this.library = this.web3.eth.contract(lib.abi).at('0x132f0bee504b5be42ae250863f9ef97f42d41616');
         window.lib = this.library;
-        var events = this.library.patentCreated({}, { fromBlock: 1114250, toBlock: 'latest' });
-        events.get((err, result) => {
-          this.patents = result;
-        });
-        this.getPatent("32")
+        this.getContracts();
+        setInterval(() => {
+          this.getContracts();
+        }, 2000);
       })
     setInterval(() => {
       this.patents = this.patents || [];
@@ -40,47 +44,50 @@ export class PatentListComponent implements OnInit {
     window.web3 = this.web3;
     window.createPatent = this.createPatent;
   }
-
-  closeBidding() {
-    this.patent.openBidding(2, {from: window.web3.eth.coinbase, gas: 4000000})
+  
+  getContracts() {
+      var events = this.library.patentCreated({}, { fromBlock: 0, toBlock: 'latest' });
+      events.get((err, result) => {
+        this.patents = result.map((r) => {
+          r.date = new Date(r.args.date*10);
+          this.patentService.getPatent()
+            .subscribe((pat) => {
+              let patent = this.web3.eth.contract(pat.abi).at(r.args.patentAddress);
+              patent._state((err,res) => {
+                r.state = res;
+              })
+              window.patent = patent;
+            })
+            return r;
+        })
+      });
   }
-
-  openBidding() {
-    this.patent.openBidding(2, {from: window.web3.eth.coinbase, gas: 4000000})
-  }
-  registerForBidding() {
-    this.patent.registerForBidding("24", {from: window.web3.eth.accounts[1], gas: 4000000})
+  ngOnDestroy() {
   }
   
-  bid() {
-    this.web3.eth.sendTransaction({ to: this.patent.address, from: this.web3.eth.coinbase, value: 20000, gas: 400000 })
-  }
-  refundBid() {
-    this.patent.refundBid({ from: window.web3.eth.coinbase, gas: 3000000 }, (err, res) => {
-      console.log(res);
-    })
+  goToPatent(id: string) {
+    this.router.navigate([`./${id}`]);
   }
   getPatent(patent: string): any {
-    this.library.getPatentById.call("32", (err, res) => {
+    this.library.getPatentById.call("33", (err, res) => {
       console.log('' + res == '0x');
       if ('' + res == '0x0000000000000000000000000000000000000000' || '' + res == '0x') {
         console.log('created');
-        this.createPatent("32");
         return false;
       } else {
-        this.patentService.getPatent()
-          .subscribe((lib) => {
-            this.patent = this.web3.eth.contract(lib.abi).at(res);
-            console.log(res);
-            window.patent = this.patent;
-          })
+        console.log('not created');
+        // this.patentService.getPatent()
+        //   .subscribe((lib) => {
+        //     this.patent = this.web3.eth.contract(lib.abi).at(res);
+        //     console.log(res);
+        //     window.patent = this.patent;
+        //   })
       }
     });
   }
   createPatent(id: string) {
-    console.log(this.library);
-    this.library.createPatent.sendTransaction("32", "32", "test", "test", "http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-bool.html&r=1&f=G&l=50&co1=AND&d=PTXT&s1=blockchain&OS=blockchain&RS=blockchain", { from: window.web3.eth.coinbase, gas: 4000000 }, (err, res) => {
-      console.log(res);
+    this.library.createPatent.sendTransaction(this.create.name, this.create.description, this.create.abstract, this.create.inventors, this.create.url, { from: window.web3.eth.coinbase, gas: 4000000 }, (err, res) => {
+      this.create = {};
     })
   }
 

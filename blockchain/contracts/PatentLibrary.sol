@@ -6,9 +6,9 @@ contract PatentLibrary {
     mapping (string => address) _contracts;
     address public _owner;
 
-    string public test = "dfdffdssd";
+    string public test = "ddsd";
 
-    event patentCreated(address indexed creator, uint date, string patentID);
+    event patentCreated(address indexed creator, uint date, string patentID, string patentAbstract, address patentAddress);
 
     function PatentLibrary() {
         _owner = tx.origin;        
@@ -17,7 +17,7 @@ contract PatentLibrary {
     function createPatent(string patentNumber, string description, string patentAbstract, string inventors, string url) {
         if(_contracts[patentNumber] != address(0)) throw;
         address patent = new Patent(patentNumber, description, patentAbstract, inventors, url);
-        patentCreated(tx.origin, now, patentNumber);
+        patentCreated(tx.origin, now, patentNumber, patentAbstract, patent);
         _contracts[patentNumber] = patent;
     }
 
