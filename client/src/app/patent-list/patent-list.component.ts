@@ -31,7 +31,7 @@ export class PatentListComponent implements OnInit, OnDestroy {
     }
     this.patentService.getPatentContract(this.web3)
       .subscribe((lib) => {
-        this.library = this.web3.eth.contract(lib.abi).at('0x132f0bee504b5be42ae250863f9ef97f42d41616');
+        this.library = this.web3.eth.contract(lib.abi).at('0xec33Cb14c1911f9e1726Ca45c0516DAb8aDff8a8');
         window.lib = this.library;
         this.getContracts();
         setInterval(() => {
@@ -46,7 +46,7 @@ export class PatentListComponent implements OnInit, OnDestroy {
   }
   
   getContracts() {
-      var events = this.library.patentCreated({}, { fromBlock: 0, toBlock: 'latest' });
+      var events = this.library.patentCreated({}, { fromBlock: 1119571, toBlock: 'latest' });
       events.get((err, result) => {
         this.patents = result.map((r) => {
           r.date = new Date(r.args.date*10);
