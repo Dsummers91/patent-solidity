@@ -1,7 +1,7 @@
 pragma solidity ^0.4.11;
 
 import "github.com/Arachnid/solidity-stringutils/strings.sol";
-import "github.com/oraclize/ethereum-api/oraclizeAPI.sol"
+import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
 
 contract Patent is usingOraclize {
     using strings for *;
