@@ -52,18 +52,18 @@ contract Patent is usingOraclize {
         _oracleQuery = oracleQuery.toString();
         }
 
-    function openBidding(uint duration, uint minimumBid) isOwner in_state(PatentStates.Closed) {
+    function openBidding(uint duration, uint minimumBid) isOwner inState(PatentStates.Closed) {
         _auctionEndTime = now + (duration * 1 days);
         _state = PatentStates.OpenForBidding;
         _minimumBid = minimumBid;
     }
 
-    function registerForBidding(string name) in_state(PatentStates.OpenForBidding) {
+    function registerForBidding(string name) inState(PatentStates.OpenForBidding) {
         _bidders[msg.sender].name = name;
         _bidders[msg.sender].bidderAddress = msg.sender;
     }
     
-    function closeBidding() isOwner in_state(PatentStates.OpenForBidding) {
+    function closeBidding() isOwner inState(PatentStates.OpenForBidding) {
         _state = PatentStates.Escrow;
     }
     
@@ -85,19 +85,26 @@ contract Patent is usingOraclize {
         if(msg.value < (valueBeforeCall - this.balance)) throw; 
     }
     
-    function nullifyContract() in_state(PatentStates.Dispute) {
+    function nullifyContract() inState(PatentStates.Dispute) {
         delete _winningBidder;
         _state = PatentStates.Closed;
     }
     
-    function approveContract() in_state(PatentStates.Dispute) {
+    function approveContract() inState(PatentStates.Dispute) {
         if (!_owner.send(_winningBidder.amountContributed)) throw;
         _state = _defaultstate;
         _owner = _winningBidder.bidderAddress;
         delete _winningBidder;
     }
 
-    function __callback(bytes32 myid, string result) in_state(PatentStates.Escrow) {
+    function bidderApproveContract() isWinningBidder inState(PatentStates.Escrow) {
+        if (!_owner.send(_winningBidder.amountContributed)) throw;
+        _state = _defaultstate;
+        _owner = _winningBidder.bidderAddress;
+        delete _winningBidder;
+    }
+
+    function __callback(bytes32 myid, string result) inState(PatentStates.Escrow) {
         if (msg.sender != oraclize_cbAddress()) throw;
         _patentOwner = _winningBidder.name;
         _patentAbstract = result;
@@ -110,16 +117,20 @@ contract Patent is usingOraclize {
         }
     }
 
-    modifier is_mediator {
+    modifier isMediator {
         if(msg.sender == _mediator) _;
     }
 
-    modifier in_state(PatentStates state) { 
+    modifier inState(PatentStates state) { 
         if (_state == state) _;
     }
     
     modifier isOwner {
         if(msg.sender == _owner) _;
+    }
+
+    modifier isWinningBidder {
+        if(_winningBidder.bidderAddress == msg.sender) _;
     }
 
     function() payable {

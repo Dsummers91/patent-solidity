@@ -117,6 +117,12 @@ export class PatentComponent implements OnInit {
       console.log(err, res);
     })
   }
+
+    bidderApproveContract() {
+    this.patentContract.bidderApproveContract({ from: window.web3.eth.coinbase, gas: 4000000 }, (err, res) => {
+      console.log(err, res);
+    })
+  }
   bid(amount: number) {
     amount = this.web3.toWei(amount, 'ether');
     this.web3.eth.sendTransaction({ to: this.patentContract.address, from: this.web3.eth.coinbase, value: amount, gas: 400000 }, (err, res) => {

@@ -1,6 +1,6 @@
 webpackJsonp([1,4],{
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -9,20 +9,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 115;
+webpackEmptyContext.id = 116;
 
 
 /***/ }),
 
-/***/ 116:
+/***/ 117:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(85);
 
 
 
@@ -35,7 +35,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ }),
 
-/***/ 122:
+/***/ 123:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -67,19 +67,19 @@ AppComponent = __decorate([
 
 /***/ }),
 
-/***/ 123:
+/***/ 124:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__patent_list_patent_list_component__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_app_shared_service_patent_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_router__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__patent_patent_component__ = __webpack_require__(84);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -127,7 +127,7 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 124:
+/***/ 125:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -147,24 +147,6 @@ var appRoutes = [
     }
 ];
 //# sourceMappingURL=app.routing.js.map
-
-/***/ }),
-
-/***/ 125:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-// The file contents for the current environment will overwrite these during build.
-var environment = {
-    production: false,
-    patentLibrary: '0x8d70a269afb234f69f84388170f52689c7b6d466'
-};
-//# sourceMappingURL=environment.js.map
 
 /***/ }),
 
@@ -239,14 +221,14 @@ module.exports = "<h1 class=\"text-center\">Blockchain Patent</h1>\n\n<table cla
 /***/ 211:
 /***/ (function(module, exports) {
 
-module.exports = "<h1 class=\"title text-center\">{{patent.patentNumber}}</h1>\n<div class=\"col-xs-offset-2 col-xs-8\">\n  <table class=\"table table-bordered\">\n    <thead>\n      <tr>\n        <th>State</th>\n        <th>ID</th>\n        <th>Descrption</th>\n        <th>URL</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>{{patent.state}}</td>\n        <td>{{patent.patentNumber}}</td>\n        <td>{{patent.patentDescription}}</td>\n        <td><a [attr.href]=\"patent.url\">link</a></td>\n      </tr>\n    </tbody>\n  </table>\n</div><div class=\"clearfix\"></div>\n<h3 class=\"text-center\">Minimum Bid: {{patent.minimumBid}}</h3>, \n<h3 class=\"text-center\">Highest Bid: {{patent.highestBid}}</h3>, \n<div class=\"clearfix\"></div>\n<br>\n<h2 class=\"text-center\">Bidder Methods</h2>\n<div class=\"container text-center\">\n  <div class=\"col-xs-offset-2 col-xs-4\">\n    <div class=\"input-group\">\n      <span class=\"btn btn-primary text-center\" class=\"input-group-addon\" id=\"btnGroupAddon\">Name</span>\n      <input [(ngModel)]=\"name\" type=\"text\" class=\"form-control\" placeholder=\"Bidder Name\">\n    </div>\n    <button class=\"btn btn-default text-center\"  (click)=\"registerForBidding(name)\">Register</button>\n  </div>\n  <div class=\"col-xs-4\">\n    <div class=\"input-group\">\n      <span class=\"btn btn-primary text-center\" class=\"input-group-addon\" id=\"btnGroupAddon\">Ether</span>\n      <input [(ngModel)]=\"amount\" type=\"number\" class=\"form-control\" placeholder=\"Amount In ether\">\n    </div>\n    <button class=\"btn btn-default text-center\"  (click)=\"bid(amount)\">Bid</button>\n  </div>\n</div>\n<div class=\"clearfix\"></div>\n<br>\n<h2 class=\"text-center\">Owner Methods</h2>\n<div class=\"container text-center\">\n  <button class=\"btn btn-success text-center\" (click)=\"openBidding()\">Open For Bidding</button>\n  <button class=\"btn btn-warning text-center\" (click)=\"closeBidding()\">Close Bidding</button>\n</div>\n<h2 class=\"text-center\">Post Bid Methods</h2>\n<div class=\"container text-center\">\n  <button class=\"btn btn-success text-center\" (click)=\"confirmPatent()\">Confirm Patent</button>\n  <button class=\"btn btn-warning text-center\" (click)=\"refundBid()\">Refund Bids</button>\n  <button class=\"btn btn-danger text-center\" (click)=\"dispute()\">Dispute</button>\n</div>\n<h2 class=\"text-center\">Mediator Methods</h2>\n<div class=\"container text-center\">\n  <button class=\"btn btn-success text-center\" (click)=\"approveContract()\">Approve COntract</button>\n  <button class=\"btn btn-danger text-center\" (click)=\"nullifyContract()\">Nullify Contract</button>\n</div>\n<div class=\"clearfix\"></div>"
+module.exports = "<h1 class=\"title text-center\">{{patent.patentNumber}}</h1>\n<div class=\"col-xs-offset-2 col-xs-8\">\n  <table class=\"table table-bordered\">\n    <thead>\n      <tr>\n        <th>State</th>\n        <th>ID</th>\n        <th>Descrption</th>\n        <th>URL</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>{{patent.state}}</td>\n        <td>{{patent.patentNumber}}</td>\n        <td>{{patent.patentDescription}}</td>\n        <td><a [attr.href]=\"patent.url\">link</a></td>\n      </tr>\n    </tbody>\n  </table>\n</div><div class=\"clearfix\"></div>\n<h3 class=\"text-center\">Minimum Bid: {{patent.minimumBid}}</h3>, \n<h3 class=\"text-center\">Highest Bid: {{patent.highestBid}}</h3>, \n<div class=\"clearfix\"></div>\n<br>\n<h2 class=\"text-center\">Bidder Methods</h2>\n<div class=\"container text-center\">\n  <div class=\"col-xs-offset-2 col-xs-4\">\n    <div class=\"input-group\">\n      <span class=\"btn btn-primary text-center\" class=\"input-group-addon\" id=\"btnGroupAddon\">Name</span>\n      <input [(ngModel)]=\"name\" type=\"text\" class=\"form-control\" placeholder=\"Bidder Name\">\n    </div>\n    <button class=\"btn btn-default text-center\"  (click)=\"registerForBidding(name)\">Register</button>\n  </div>\n  <div class=\"col-xs-4\">\n    <div class=\"input-group\">\n      <span class=\"btn btn-primary text-center\" class=\"input-group-addon\" id=\"btnGroupAddon\">Ether</span>\n      <input [(ngModel)]=\"amount\" type=\"number\" class=\"form-control\" placeholder=\"Amount In ether\">\n    </div>\n    <button class=\"btn btn-default text-center\"  (click)=\"bid(amount)\">Bid</button>\n  </div>\n</div>\n<div class=\"clearfix\"></div>\n<br>\n<h2 class=\"text-center\">Owner Methods</h2>\n<div class=\"container text-center\">\n  <button class=\"btn btn-success text-center\" (click)=\"openBidding()\">Open For Bidding</button>\n  <button class=\"btn btn-warning text-center\" (click)=\"closeBidding()\">Close Bidding</button>\n</div>\n<h2 class=\"text-center\">Post Auction Methods</h2>\n<div class=\"container text-center\">\n  <button class=\"btn btn-success text-center\" (click)=\"confirmPatent()\">Confirm Patent</button>\n  <button class=\"btn btn-warning text-center\" (click)=\"refundBid()\">Refund Bids</button>\n  <button class=\"btn btn-info text-center\" (click)=\"bidderApproveContract()\">Approve Contract</button>\n  <button class=\"btn btn-danger text-center\" (click)=\"dispute()\">Dispute</button>\n</div>\n<h2 class=\"text-center\">Mediator Methods</h2>\n<div class=\"container text-center\">\n  <button class=\"btn btn-success text-center\" (click)=\"approveContract()\">Approve Contract</button>\n  <button class=\"btn btn-danger text-center\" (click)=\"nullifyContract()\">Nullify Contract</button>\n</div>\n<div class=\"clearfix\"></div>"
 
 /***/ }),
 
 /***/ 275:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(116);
+module.exports = __webpack_require__(117);
 
 
 /***/ }),
@@ -259,6 +241,7 @@ module.exports = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_environments_environment__ = __webpack_require__(85);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PatentService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -272,15 +255,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PatentService = (function () {
     function PatentService(http) {
         this.http = http;
     }
     PatentService.prototype.getPatentContract = function (web3) {
+        if (__WEBPACK_IMPORTED_MODULE_3_environments_environment__["a" /* environment */].production) {
+            return this.http.get('./patentlibrary.json')
+                .map(function (response) { return response.json(); });
+        }
         return this.http.get('http://127.0.0.1:8000/patentlibrary')
             .map(function (response) { return response.json(); });
     };
     PatentService.prototype.getPatent = function () {
+        if (__WEBPACK_IMPORTED_MODULE_3_environments_environment__["a" /* environment */].production) {
+            return this.http.get('./patent.json')
+                .map(function (response) { return response.json(); });
+        }
         return this.http.get('http://127.0.0.1:8000/patent')
             .map(function (response) { return response.json(); });
     };
@@ -303,7 +295,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_service_patent_service__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_web3__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_web3__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_web3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_web3__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PatentListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -338,7 +330,7 @@ var PatentListComponent = (function () {
         }
         this.patentService.getPatentContract(this.web3)
             .subscribe(function (lib) {
-            _this.library = _this.web3.eth.contract(lib.abi).at('0x3b04fE380A24c7C2573B6F76365Db93c1D5b48e0');
+            _this.library = _this.web3.eth.contract(lib.abi).at('0x68cb2bab4308f9c3b2d51e608d92a4474f14ed50');
             window.lib = _this.library;
             _this.getContracts();
         });
@@ -350,7 +342,7 @@ var PatentListComponent = (function () {
     };
     PatentListComponent.prototype.getContracts = function () {
         var _this = this;
-        var events = this.library.patentCreated({}, { fromBlock: 1132956, toBlock: 'latest' });
+        var events = this.library.patentCreated({}, { fromBlock: 1135160, toBlock: 'latest' });
         events.watch(function (err, r) {
             r.date = new Date(r.args.date * 1000);
             _this.patentService.getPatent()
@@ -410,7 +402,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_service_patent_service__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_web3__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_web3__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_web3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_web3__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PatentComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -524,6 +516,11 @@ var PatentComponent = (function () {
             console.log(err, res);
         });
     };
+    PatentComponent.prototype.bidderApproveContract = function () {
+        this.patentContract.bidderApproveContract({ from: window.web3.eth.coinbase, gas: 4000000 }, function (err, res) {
+            console.log(err, res);
+        });
+    };
     PatentComponent.prototype.bid = function (amount) {
         amount = this.web3.toWei(amount, 'ether');
         this.web3.eth.sendTransaction({ to: this.patentContract.address, from: this.web3.eth.coinbase, value: amount, gas: 400000 }, function (err, res) {
@@ -548,6 +545,24 @@ PatentComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=patent.component.js.map
+
+/***/ }),
+
+/***/ 85:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
+var environment = {
+    production: false,
+    patentLibrary: '0x8d70a269afb234f69f84388170f52689c7b6d466'
+};
+//# sourceMappingURL=environment.js.map
 
 /***/ })
 
