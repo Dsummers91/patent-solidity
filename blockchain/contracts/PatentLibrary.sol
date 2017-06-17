@@ -6,7 +6,7 @@ contract PatentLibrary {
     mapping (string => address) _contracts;
     address public _owner;
 
-    string public test = "ddsd";
+    string public test = "s";
 
     event patentCreated(address indexed creator, uint date, string patentID, string patentAbstract, address patentAddress);
 

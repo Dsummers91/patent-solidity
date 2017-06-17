@@ -31,12 +31,9 @@ export class PatentListComponent implements OnInit, OnDestroy {
     }
     this.patentService.getPatentContract(this.web3)
       .subscribe((lib) => {
-        this.library = this.web3.eth.contract(lib.abi).at('0xec33Cb14c1911f9e1726Ca45c0516DAb8aDff8a8');
+        this.library = this.web3.eth.contract(lib.abi).at('0x3b04fE380A24c7C2573B6F76365Db93c1D5b48e0');
         window.lib = this.library;
         this.getContracts();
-        setInterval(() => {
-          this.getContracts();
-        }, 2000);
       })
     setInterval(() => {
       this.patents = this.patents || [];
@@ -46,20 +43,18 @@ export class PatentListComponent implements OnInit, OnDestroy {
   }
   
   getContracts() {
-      var events = this.library.patentCreated({}, { fromBlock: 1119571, toBlock: 'latest' });
-      events.get((err, result) => {
-        this.patents = result.map((r) => {
-          r.date = new Date(r.args.date*10);
-          this.patentService.getPatent()
-            .subscribe((pat) => {
-              let patent = this.web3.eth.contract(pat.abi).at(r.args.patentAddress);
-              patent._state((err,res) => {
-                r.state = res;
-              })
-              window.patent = patent;
+      var events = this.library.patentCreated({}, { fromBlock: 1132956, toBlock: 'latest' });
+      events.watch((err, r) => {
+        r.date = new Date(r.args.date*1000);
+        this.patentService.getPatent()
+          .subscribe((pat) => {
+            let patent = this.web3.eth.contract(pat.abi).at(r.args.patentAddress);
+            patent._state((err,res) => {
+              r.state = res;
             })
-            return r;
-        })
+            window.patent = patent;
+          })
+          this.patents.push(r);
       });
   }
   ngOnDestroy() {
@@ -70,23 +65,17 @@ export class PatentListComponent implements OnInit, OnDestroy {
   }
   getPatent(patent: string): any {
     this.library.getPatentById.call("33", (err, res) => {
-      console.log('' + res == '0x');
       if ('' + res == '0x0000000000000000000000000000000000000000' || '' + res == '0x') {
         console.log('created');
         return false;
       } else {
         console.log('not created');
-        // this.patentService.getPatent()
-        //   .subscribe((lib) => {
-        //     this.patent = this.web3.eth.contract(lib.abi).at(res);
-        //     console.log(res);
-        //     window.patent = this.patent;
-        //   })
       }
     });
   }
   createPatent(id: string) {
     this.library.createPatent.sendTransaction(this.create.name, this.create.description, this.create.abstract, this.create.inventors, this.create.url, { from: window.web3.eth.coinbase, gas: 4000000 }, (err, res) => {
+      console.log(err, res);
       this.create = {};
     })
   }
