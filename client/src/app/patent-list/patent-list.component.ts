@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router'
 import { PatentService } from "app/shared/service/patent.service";
 import * as Web3 from "web3";
+import  { environment } from 'environments/environment';
 
 declare var window: any;
 @Component({
@@ -31,7 +32,7 @@ export class PatentListComponent implements OnInit, OnDestroy {
     }
     this.patentService.getPatentContract(this.web3)
       .subscribe((lib) => {
-        this.library = this.web3.eth.contract(lib.abi).at('0x68cb2bab4308f9c3b2d51e608d92a4474f14ed50 ');
+        this.library = this.web3.eth.contract(lib.abi).at(environment.patentLibrary);
         window.lib = this.library;
         this.getContracts();
       })

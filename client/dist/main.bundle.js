@@ -22,7 +22,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(54);
 
 
 
@@ -74,13 +74,13 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__patent_list_patent_list_component__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__patent_list_patent_list_component__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_app_shared_service_patent_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_router__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__patent_patent_component__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__patent_patent_component__ = __webpack_require__(85);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -131,8 +131,8 @@ AppModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__patent_list_patent_list_component__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__patent_patent_component__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__patent_list_patent_list_component__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__patent_patent_component__ = __webpack_require__(85);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return appRoutes; });
 
 
@@ -214,7 +214,7 @@ module.exports = "<h1>\n  {{title}}\n</h1>\n\n<router-outlet></router-outlet>"
 /***/ 210:
 /***/ (function(module, exports) {
 
-module.exports = "<h1 class=\"text-center\">Blockchain Patent</h1>\n\n<table class=\"table table-bordered text-center table-striped\">\n  <thead>\n    <tr>\n      <th class=\"text-center\">Patents ID</th>\n      <th class=\"text-center\">Abstract</th>\n      <th class=\"text-center\">Date Created</th>\n      <th class=\"text-center\">Status</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody *ngIf=\"patents\">\n    <tr *ngFor=\"let patent of patents\" (click)=\"goToPatent(patent.args.patentAddress)\">\n      <td>{{patent.args.patentID}}</td>\n      <td>{{patent.args.patentAbstract}}</td>\n      <td>{{patent.date}}</td>\n      <td>{{state[patent.state]}}</td>\n      <td><button class=\"btn btn-info btn-sm btn-small\">GO</button></td>\n    </tr>\n  </tbody>\n</table>\n<br>\n\n<h2 class=\"text-center\">Create Patent Contract</h2>\n<div class=\"col-xs-6 col-xs-offset-3\">\n  <div class=\"form-group row\">\n  <label  class=\"col-2 col-form-label\">ID</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.name\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n  <label  class=\"col-2 col-form-label\">Inventors</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.inventors\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n  <label  class=\"col-2 col-form-label\">Abstract</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.abstract\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n  <label  class=\"col-2 col-form-label\">Description</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.description\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n  <label  class=\"col-2 col-form-label\">Url</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.url\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n</div>\n</div>\n<br>\n<div class=\"clearfix\"></div>\n<div class=\"text-center\">\n  <button (click)=\"createPatent('2')\" class=\"btn btn-primary\" type=\"submit\">Create</button>\n</div>"
+module.exports = "<h1 class=\"text-center\">Blockchain Patent</h1>\n<a href=\"https://github.com/Dsummers91/patent-solidity\" target=\"_blank\">\n  <h4 class=\"text-center\">View Source</h4>\n</a>\n\n<table class=\"table table-bordered text-center table-striped\">\n  <thead>\n    <tr>\n      <th class=\"text-center\">Patents ID</th>\n      <th class=\"text-center\">Abstract</th>\n      <th class=\"text-center\">Date Created</th>\n      <th class=\"text-center\">Status</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody *ngIf=\"patents\">\n    <tr *ngFor=\"let patent of patents\" (click)=\"goToPatent(patent.args.patentAddress)\">\n      <td>{{patent.args.patentID}}</td>\n      <td>{{patent.args.patentAbstract}}</td>\n      <td>{{patent.date}}</td>\n      <td>{{state[patent.state]}}</td>\n      <td><button class=\"btn btn-info btn-sm btn-small\">GO</button></td>\n    </tr>\n  </tbody>\n</table>\n<br>\n\n<h2 class=\"text-center\">Create Patent Contract</h2>\n<div class=\"col-xs-6 col-xs-offset-3\">\n  <div class=\"form-group row\">\n  <label  class=\"col-2 col-form-label\">ID</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.name\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n  <label  class=\"col-2 col-form-label\">Inventors</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.inventors\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n  <label  class=\"col-2 col-form-label\">Abstract</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.abstract\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n  <label  class=\"col-2 col-form-label\">Description</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.description\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n  <label  class=\"col-2 col-form-label\">Url</label>\n  <div class=\"col-10\">\n    <input [(ngModel)]=\"create.url\" class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\">\n  </div>\n</div>\n</div>\n<br>\n<div class=\"clearfix\"></div>\n<div class=\"text-center\">\n  <button (click)=\"createPatent('2')\" class=\"btn btn-primary\" type=\"submit\">Create</button>\n</div>"
 
 /***/ }),
 
@@ -238,10 +238,10 @@ module.exports = __webpack_require__(117);
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_environments_environment__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_environments_environment__ = __webpack_require__(54);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PatentService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -288,7 +288,20 @@ var _a;
 
 /***/ }),
 
-/***/ 83:
+/***/ 54:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+var environment = {
+    production: true,
+    patentLibrary: '0xb88D10ce235C829fBAf03DEF4149CcBe8f4517E6'
+};
+//# sourceMappingURL=environment.js.map
+
+/***/ }),
+
+/***/ 84:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -297,6 +310,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_service_patent_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_web3__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_web3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_web3__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_environments_environment__ = __webpack_require__(54);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PatentListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -307,6 +321,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -330,7 +345,7 @@ var PatentListComponent = (function () {
         }
         this.patentService.getPatentContract(this.web3)
             .subscribe(function (lib) {
-            _this.library = _this.web3.eth.contract(lib.abi).at('0x68cb2bab4308f9c3b2d51e608d92a4474f14ed50');
+            _this.library = _this.web3.eth.contract(lib.abi).at(__WEBPACK_IMPORTED_MODULE_4_environments_environment__["a" /* environment */].patentLibrary);
             window.lib = _this.library;
             _this.getContracts();
         });
@@ -395,7 +410,7 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 84:
+/***/ 85:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -545,24 +560,6 @@ PatentComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=patent.component.js.map
-
-/***/ }),
-
-/***/ 85:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-// The file contents for the current environment will overwrite these during build.
-var environment = {
-    production: false,
-    patentLibrary: '0x8d70a269afb234f69f84388170f52689c7b6d466'
-};
-//# sourceMappingURL=environment.js.map
 
 /***/ })
 
