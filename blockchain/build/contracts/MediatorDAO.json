@@ -1,0 +1,8 @@
+{
+  "contract_name": "MediatorDAO",
+  "abi": [],
+  "unlinked_binary": "0x60606040523415600b57fe5b5b60338060196000396000f30060606040525bfe00a165627a7a723058207562869d3f0e2a0768247aa2cb2b0710187b5d2685483cf6ef34bafe512f3e660029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1500096508348
+}
