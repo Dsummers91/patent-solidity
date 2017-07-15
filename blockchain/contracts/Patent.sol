@@ -237,7 +237,7 @@ contract Patent is usingOraclize {
   *   Called when a mediator nullifies an auctions results
   *   Returns funds backs to bidder
   **/
-  function nullifyAuction() returns (bool success) {
+  function nullifyAuction() internal returns (bool success) {
     winningBidder.transfer(this.balance);
     state = defaultstate;
     delete winningBidder;
